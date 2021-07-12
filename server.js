@@ -100,11 +100,11 @@ app.use(express.urlencoded({ extended: false }))
 
 
 app.get('/clinic', async (req, res) => {
-  newVal2.find(function(err, todos) {
+  newVal2.find(function(err, clinics) {
     if (err) {
         console.log(err);
     } else {
-        res.json(todos);
+        res.json(clinics);
     }
 });
   })
@@ -117,11 +117,11 @@ app.get('/clinic', async (req, res) => {
 
 app.post('/test', (req, res) => {
   newVal2.insertMany(excelMongodb.Sheet1)
-        .then(todo => {
-            res.status(200).json({todo});
+        .then(clinic => {
+            res.status(200).json({clinic});
         })
         .catch(err => {
-            res.status(400).send('adding new todo failed');
+            res.status(400).send('adding new clinic failed');
         });
 }, (error, req, res, next) => {
   res.status(400).send({ error: error.message })
